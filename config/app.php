@@ -166,6 +166,9 @@ return [
 
         //laravel collective
         Collective\Html\HtmlServiceProvider::class,
+
+        //flash message
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
