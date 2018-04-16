@@ -19,6 +19,7 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         if (count($request->all())) {
+             // return $request->name;
 
             $employees = (new Employee)->newQuery();
 
@@ -31,31 +32,33 @@ class EmployeeController extends Controller
             }
 
             if ($request->has('address')) {
-                $employees->where('address', 'like', "%{$request->address}%")
-                          ->orWhere('address_temperary', 'like', "%{$request->address}%");
+                $employees->where('address', 'like', "%{$request->address}%");
             }
 
             if ($request->has('telephone_no')) {
-                $employees->where('telephone_no_1', 'like', "%{$request->telephone_no}%")
-                          ->orWhere('telephone_no_2', 'like', "%{$request->telephone_no}%");
+                $employees->where('telephone_no_1', 'like', "{$request->telephone_no}%");
             }
 
             if ($request->has('nic')) {
-                $employees->where('nic', 'like', "%{$request->nic}%");
+                $employees->where('nic', 'like', "{$request->nic}%");
             }
 
 
             if ($request->has('dob')) {
-                $employees->where('dob', 'like', "%{$request->dob}%");
+                $employees->where('dob', 'like', "{$request->dob}%");
             }
 
 
             if ($request->has('date_joined')) {
-                $employees->where('date_joined', 'like', "%{$request->date_joined}%");
+                $employees->where('date_joined', 'like', "{$request->date_joined}%");
             }
 
-            // return $employees->get();
-            return Datatables::of($employees->get())->make(true);
+             // return $employees->get();
+            return Datatables::of($employees->get())
+            ->addColumn('action', function ($employee) {
+                return '<a href="#edit-'.$employee->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
+            ->make(true);
         }
 
          // 
@@ -74,6 +77,7 @@ class EmployeeController extends Controller
         ];
 
         $datableColumns=[//column names of index-table
+            'action',
             'FP Id',
             'Name',
             'nic',
@@ -82,11 +86,12 @@ class EmployeeController extends Controller
             'tele 1',
             'tele 2',
             'date joined',
-            'date of birth',
-            'action'
+            'date of birth'
+            // 'action'
           ];
  
           $columnMapper=[//i dont know why they use this any way I created this abnormal arry
+            ['data'=>'action','name'=>'action','orderable'=>false,'searchable'=>false],
             ['data'=>'id','name'=>'id'],
             ['data'=>'name','name'=>'name'],
             ['data'=>'nic','name'=>'nic'],

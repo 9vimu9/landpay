@@ -16,8 +16,10 @@
   
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/AdminLTE.min.css')}}">
-
   <link rel="stylesheet" type="text/css" href="{{asset('AdminLTE/dist/css/skins/skin-blue.min.css')}}">
+
+{{-- daterangepicker --}}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
   <!-- Google Font -->
   <link rel="stylesheet"
