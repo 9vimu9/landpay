@@ -1,7 +1,15 @@
 <?php
 
 use App\User;
+use App\Place;
+use App\Skill;
+use App\Device;
+use App\Labour;
+use App\Salary;
+use App\Advance;
+use App\Session;
 use App\Employee;
+use App\Template;
 use App\Otcategory;
 use App\Designation;
 use App\Sessioncategory;
@@ -21,19 +29,38 @@ class DatabaseSeeder extends Seeder
     	//if we didnt do this thn foreifn key check errror popoup
 
 //truncate will reset model(table)
+
+        User::truncate();
         Designation::truncate();
         Otcategory::truncate();
         Sessioncategory::truncate();
-        User::truncate();
         Employee::truncate();
+        Labour::truncate();
+        Skill::truncate();
+        Session::truncate();
+        Advance::truncate();
+        Salary::truncate();
+        Place::truncate();
+        Device::truncate();
+        Template::truncate();
 
 
 //define seed quantity
         $userQuantity=50;
         $designationQuantity=20;
         $otcategoryQuantity=10;
-        $sessioncategoryQuantity=10;
+        $sessioncategoryQuantity=5;
         $employeeQuantity=200;
+        $labourQuantity=100;
+        $skillQuantity=20;
+        $sessionQuantity=20;
+       
+
+        $advanceQuantity=100;
+        $deviceQuantity=100;
+        $placeQuantity=100;
+        $salaryQuantity=100;
+        $templateQuantity=100;
 
 
 //seed data
@@ -42,6 +69,16 @@ class DatabaseSeeder extends Seeder
         factory(Otcategory::class,$otcategoryQuantity)->create();
         factory(Sessioncategory::class,$sessioncategoryQuantity)->create();
         factory(Employee::class,$employeeQuantity)->create();
+        factory(Labour::class,$labourQuantity)->create();
+        factory(Skill::class,$skillQuantity)->create();
+        factory(Session::class,$sessionQuantity)->create();
+        factory(Advance::class,$advanceQuantity)->create();
+        // factory(Salary::class,$salaryQuantity)->create();
+        factory(Place::class,$placeQuantity)->create();
+        factory(Device::class,$deviceQuantity)->create();
+        factory(Template::class,$templateQuantity)->create();
+
+
 
 
         // factory(Product::class,$productsQuantity)->create();//mehema dammama category_product poivot eka pirawenne naa

@@ -15,6 +15,27 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+  /*
+    |--------------------------------------------------------------------------
+    | Application titlePartial 
+    |--------------------------------------------------------------------------
+    |
+    | This value is the last part of title
+    |
+    */
+
+    'titlePartial' => ' | LMP',//LMP=LandMaarkPayroll
+
+    'logo-mini-1' => 'LM',
+    'logo-mini-2' => 'P',
+
+    'logo-lg-1' => 'LandMaark',
+    'logo-lg-2' => 'PAYROLL',
+
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -169,6 +190,12 @@ return [
 
         //flash message
         Laracasts\Flash\FlashServiceProvider::class,
+
+        //yajira tables
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
+        //javascript provider
+        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
     ],
 
     /*
@@ -219,6 +246,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+    'Datatables' => yajra\Datatables\Datatables::class,
 
     ],
 

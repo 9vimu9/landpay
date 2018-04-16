@@ -20,7 +20,8 @@ $factory->define(Labour::class, function (Faker $faker) {
 
     	'expected_rate'=>$faker->numberBetween(450,3000),
     	'work_start_date'=>$faker->date('Y-m-d','now'),//// '1979-06-09'
-		'recommend_employee_id'=>Employee::all()->except($employee->id)->random()->id;
+    	'employee_id'=>$employee->id,
+		'recommend_employee_id'=>Employee::all()->except($employee->id)->random()->id
 
     ];
 });

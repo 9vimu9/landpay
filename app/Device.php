@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\softDeletes;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Device extends Model
 {

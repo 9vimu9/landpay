@@ -17,4 +17,11 @@ class Salary extends Model
     	'start_session_id'
     	
     ];
+
+    public static function getLatestSalary($employeeId)
+    {
+    	$this::where('employee_id',$employeeId)
+    		->latest()
+    		->first();
+    }
 }

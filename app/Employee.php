@@ -10,9 +10,7 @@ class Employee extends Model
     use SoftDeletes;
     
     protected $dates=[
-    	'deleted_at',
-    	'dob',
-    	'date_joined'
+    	'deleted_at'
     ];
 
  //    const AVAILABLE_PRODUCT='available';

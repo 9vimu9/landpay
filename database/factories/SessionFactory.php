@@ -5,6 +5,11 @@ use App\Sessioncategory;
 use Faker\Generator as Faker;
 
 $factory->define(Session::class, function (Faker $faker) {
+    $session=Sessioncategory::all()->random();
+    $interval=$session->intervel;
+    $startingDate = $faker->dateTimeThisYear('+4 month');
+    $endingDate   = strtotime('+'.$interval.' week', $startingDate->getTimestamp());
+    
     return [
     	// $table->increments('id');
     	// $table->year('year');
@@ -15,8 +20,8 @@ $factory->define(Session::class, function (Faker $faker) {
 
     	'year'=>$faker->numberBetween(2016,2018),
     	'month'=>$faker->numberBetween(1,12),
-    	'start_date'=>$faker->date('Y-m-d','-18 years'),//// '1979-06-09'
-        'end_date'=>$faker->date('Y-m-d','-18 years'),//// '1979-06-09'
-        'sessioncategory_id'=>Sessioncategory::all()->random()->id,
+    	'start_date'=>$startingDate,//// '1979-06-09'
+        'end_date'=>$endingDate,//// '1979-06-09'
+        'sessioncategory_id'=>$session->id,
     ];
 });

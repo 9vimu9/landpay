@@ -19,6 +19,7 @@ class CreateDevicesTable extends Migration
             $table->integer('place_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
+            
             $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
         });
     }

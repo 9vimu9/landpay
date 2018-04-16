@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Advance extends Model
 {
     use softDeletes;
+    
     protected $dates=['deleted_at'];
 
     protected $fillable=[

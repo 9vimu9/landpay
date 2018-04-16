@@ -19,6 +19,7 @@ class CreateAdvancesTable extends Migration
             $table->integer('session_id')->unsigned();
             $table->string('remarks')->nullable();
             $table->integer('user_id')->unsigned();
+            $table->double('amount',10,2);
             $table->softDeletes();
             $table->timestamps();
 

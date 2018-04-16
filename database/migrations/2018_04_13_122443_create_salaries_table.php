@@ -16,10 +16,11 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('salary_type')->default(Salary::MONTHLY_SALARY)->comment('0=daily wage 1=monthly');
             $table->integer('employee_id')->unsigned();
             $table->integer('start_session_id')->unsigned();
+            $table->double('amount',10,2);
             $table->timestamps();
+
             $table->foreign('start_session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             
