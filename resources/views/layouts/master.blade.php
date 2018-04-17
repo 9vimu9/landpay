@@ -31,11 +31,14 @@
 <!-- jQuery 3 -->
 <script src="{{asset('AdminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
 
+{{-- select2 --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 {{-- moment --}}
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <!-- Bootstrap 3.3.7 -->
-<script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/laravel-jsvalidation.min.js')}}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
@@ -44,7 +47,24 @@
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
 {{-- date range pocker --}}
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.16.4/jquery.daterangepicker.min.js"></script>
+
+
+<!-- Laravel Javascript Validation -->
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
+@yield('laravel-jsvalidation')
+
+<script >
+  var select2Route="{{route('ajax.select2')}}";
+</script>
+
+
+{{-- custome js files (created by me ha ha ha) --}}
+<script src="{{asset('js/custom_daterangepicker.js')}}"></script>
+
+<script src="{{asset('js/custom_select2.js')}}"></script>
+
 
 @yield('script')
 

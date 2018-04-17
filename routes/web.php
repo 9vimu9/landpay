@@ -13,6 +13,11 @@
 
 Auth::loginUsingId(1);
 
+//ajax calls
+// Route::post('/ajax/select2','Ajax\Select2Controller@select2Server')->name('ajax.select2');
+Route::get('/ajax/select2','Ajax\Select2Controller@select2Server')->name('ajax.select2');
+
+
 Route::get('/', function () {
     return view('welcome');
 });

@@ -195,7 +195,11 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
 
         //javascript provider
-        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
+        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
+
+        //jsvalidation
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
+
     ],
 
     /*
@@ -246,8 +250,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     'Datatables' => yajra\Datatables\Datatables::class,
+     'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
 
     ],
 

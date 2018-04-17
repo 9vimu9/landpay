@@ -19,12 +19,16 @@
   <link rel="stylesheet" type="text/css" href="{{asset('AdminLTE/dist/css/skins/skin-blue.min.css')}}">
 
 {{-- daterangepicker --}}
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.16.4/daterangepicker.min.css" />
+
+{{-- select2 --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
 
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
 </head>

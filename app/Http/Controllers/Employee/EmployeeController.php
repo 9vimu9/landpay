@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Employee;
 
-use JavaScript;
 use App\User;
+use JavaScript;
 use App\Employee;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -28,7 +29,7 @@ class EmployeeController extends Controller
             }
 
             if ($request->has('id')) {
-                $employees->where('id', 'like', "%{$request->id}%");
+                $employees->where('id', 'like', "{$request->id}%");
             }
 
             if ($request->has('address')) {
@@ -53,10 +54,9 @@ class EmployeeController extends Controller
                 $employees->where('date_joined', 'like', "{$request->date_joined}%");
             }
 
-             // return $employees->get();
             return Datatables::of($employees->get())
             ->addColumn('action', function ($employee) {
-                return '<a href="#edit-'.$employee->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+               return htmlCellBtnEdit('#','xs');
             })
             ->make(true);
         }
@@ -104,7 +104,7 @@ class EmployeeController extends Controller
 
 
           ];
-        JavaScript::put([//this will convert php vars to js vars in more secure way thanks jeffory way
+        JavaScript::put([//this will convert php vars to js vars in more secure way. thanks jeffory way
             'route'=>$route,
             'columns'=>$columnMapper,
             'filters'=>$filters
@@ -118,10 +118,10 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        // return $request->name;
-        
+       $employee = new Employee;
+       return view('employees.create', ['employee' => $employee ]);        
     }
 
     /**
@@ -130,7 +130,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
         //
     }

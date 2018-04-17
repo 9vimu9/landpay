@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.index')
 
 @section('title')
     Employees -index
@@ -13,19 +13,13 @@
 @endsection
 
 @section('options-bar')
-  <a href="#" class="btn btn-warning btn-sm ">ddd</a>
-  <a href="#" class="btn btn-primary btn-sm">ddd</a>
+  {{-- <a href="#" class="btn btn-warning btn-sm ">ddd</a> --}}
+  <a href="{{route('employees.create')}}" class="btn btn-primary btn-sm ">NEW EMPLOYEE</a>
+ 
 @endsection
 
-@section('content')
 
-  @component('components.box', ['type' => 'box-solid'])
-
-    @component('components.box', ['color'=>'default','type' => 'box-solid',"title"=>'filter',"tools"=>true])
-      
-      {{-- <div class="form-inline"> --}}
-        {{-- ////////////////////////////////////// --}}
-
+   @section('filters')   
       <div class="row">
 
         <div class="col-md-4">
@@ -40,10 +34,11 @@
             <input class="form-control" name="name" id="name" placeholder="search name" type="text">
           </div>
           
-          <div class="form-group">
+          {{-- <div class="form-group"> --}}
             <label for="date_joined">date joined</label>
-            <input class="form-control" name="date_joined" id="date_joined" placeholder="search join date" type="text">
-          </div>
+            <input class="daterangepicker form-control " name="date_joined" id="date_joined" placeholder="search join date" type="text">
+          {{-- </div> --}}
+
         </div>
         <!-- /.col -->
         <div class="col-md-4">
@@ -61,6 +56,12 @@
 
         <div class="form-group">
           <button  class="btn btn-primary" id="btn-filter" >Search</button>
+
+          <div class="form-group">
+                         <label for="users">Select user</label>
+                         <select name="designation_id" id="designation_id" class="form-control">
+            </select>
+          </div>
         </div>
           <!-- /.form-group -->
         </div>
@@ -68,81 +69,22 @@
         <div class="col-md-4">
 
           <div class="form-group">
-          <label for="telephone_no">telephone no</label>
-          <input class="form-control" name="telephone_no" id="telephone_no" placeholder="search telephone no" type="text">
-        </div>
-          <!-- /.form-group -->
+            <label for="telephone_no">telephone no</label>
+            <input class="form-control" name="telephone_no" id="telephone_no" placeholder="search telephone no" type="text">
+          </div>
+
           <div class="form-group">
-          <label for="dob">date of birth</label>
-          <input class="form-control" name="dob" id="dob" placeholder="search dob" type="text">
-        </div>
-          <!-- /.form-group -->
+
+            <label for="dob">date of birth</label>
+            <input class="datepicker form-control" name="dob" id="dob" placeholder="search dob" type="text">
+
+          </div>
+
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
-        
-
-        
-
-         
-
-        
-
-       
-
-       
-
-       
-
-      {{-- //////////////////////////////////////////// --}}
-      {{-- </div> --}}
-        
-    @endcomponent
-
-    <table id="table-index" class="display nowrap table table-hover table-condensed" style="width:100%">
-
-      <thead>
-        <tr>
-          @foreach ($columns as $column)
-            <th>{{$column}}</th>
-          @endforeach
-        </tr>
-      </thead>
-
-    </table>
-
-  @endcomponent
-
 @endsection
 
-
-@section('script')
-
-<script>
-  $(function () {
-    var oTable = $('#table-index').DataTable({
-        "scrollX": true,
-      processing: true,
-      serverSide: true,
-      searching: false,
-      ajax: {
-          url: route,//laravel to js variable
-          data: function (d) {
-            jQuery.each( filters, function( index, value ) {
-              d[value] = $('input[name='+value+']').val();
-
-            });
-          }
-      },
-      columns: columns
-    });
-
-    $('#btn-filter').on('click', function(e) {
-        oTable.draw();
-    });
-
-  });
-</script>
-
-@endsection
+        
+  

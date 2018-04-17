@@ -18,8 +18,13 @@
 {{-- <br> --}}
     <!-- Main content -->
     <section class="content container-fluid">
+  
+    @component('components.box', ['type' => 'box-solid'])
 
-      @yield('content')
+        @yield('content')
+        
+    @endcomponent
+
 
     </section>
     <!-- /.content -->
