@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Employee;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEmployeeRequest extends FormRequest
@@ -23,9 +24,24 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function rules()
     {
+         $employee =  $this->route('employee');
+         $employeeId=is_null($this->route('employee')) ? '': $this->route('employee')->getKey();
+
+
         return [
-             'title' => 'required|unique|max:255',
-            'body' => 'required',
+            'id' => 'numeric|required|unique:employees,id,'.$employeeId,
+            'name' => 'required|max:255|unique:employees,name,'.$employeeId,
+            'address' => 'required|max:255',
+            'address_temperary' => 'max:255',
+            'telephone_no_1' => 'required|regex:/^[0-9]{10}$/|unique:employees,telephone_no_1,'.$employeeId,
+            'telephone_no_2' => 'regex:/^[0-9]{10}$/',
+            'nic'=>'required|regex:/^[0-9]{11}$/|unique:employees,nic,'.$employeeId,
+            'dob'=>'date_format:Y-m-d|before:16 years',
+            'date_joined'=>'date_format:Y-m-d|before:today',
+            'designation_id' => 'numeric|required',
+            'sessioncategory_id' => 'numeric|required',
+            'otcategory_id' => 'numeric|required',
+
         ];
     }
 }

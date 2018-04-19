@@ -1,29 +1,15 @@
-@extends('layouts.master')
 
-@section('title')
-    Employees-create
-@endsection
 
-@section('pageHeader')
-    Employees
-@endsection
 
-@section('optionalDescription')
-    create a new employee
-@endsection
 
-@section('options-bar')
-  <a href="{{route('employees.index')}}" class="btn btn-warning btn-sm ">all employees</a>
-  <a href="#" class="btn btn-primary btn-sm">ddd</a>
-@endsection
-
-@section('content')
-
-{!! Form::open(['route' => 'employees.store']) !!}
-
- <div class="form-group">
+<div class="form-group">
      {!! Form::label('name', "Employee's name") !!}
      {!! Form::text('name', null, ['class' => 'form-control']) !!}
+ </div>
+
+ <div class="form-group">
+     {!! Form::label('id', "Finger print ID") !!}
+     {!! Form::number('id', null, ['class' => 'form-control']) !!}
  </div>
 
  <div class="form-group">
@@ -35,6 +21,7 @@
      {!! Form::label('address_temperary', "Employee's temporary address") !!}
      {!! Form::text('address_temperary', null, ['class' => 'form-control']) !!}
  </div>
+
 
  <div class="form-group">
   <div class="row">
@@ -67,35 +54,40 @@
      {!! Form::text('date_joined', null, ['class' => 'form-control']) !!}
  </div>
 
- <div class="form-group">
-                         <label for="users">Select user</label>
-                         <select name="designation_id" id="designation_id" class="form-control">
-                         </select>
-          </div>
-
-
-
-
- {!! Form::submit('Save', ['class' => 'btn btn-info']) !!}
-
- {!! Form::close() !!}
-
-        
-
-@endsection
-
-@section('laravel-jsvalidation')
-{!! JsValidator::formRequest('App\Http\Requests\StoreEmployeeRequest', '#my-form'); !!}
-@endsection
-
-
-@section('script')
-
-<script>
-  $(function () {
+<div class="form-group">
    
+</div>
 
-  });
-</script>
+ <div class="form-group">
+  <div class="row">
+    <div class="col-md-6">
+       {!! Form::label('designation_id', "select a designation") !!}
 
-@endsection
+        {!! Form::select('designation_id', isset($employee) ? [$employee->designation_id=>$employee->designation->name] : [], null, ['class' => 'form-control']) !!}
+
+    </div>
+    <div class="col-md-6">
+       {!! Form::label('isLabour', "Is he/she a labour ?") !!}
+
+       <input id="toggle-one" name="isLabour" checked type="checkbox" class="form-control toggle"  data-on="LABOURER"  data-off="EMPLOYEE" data-size="large">
+    </div>
+
+  </div>
+        
+ </div>
+
+ <div class="form-group">
+    {!! Form::label('sessioncategory_id', "select a salary session category") !!}
+
+    {!! Form::select('sessioncategory_id', isset($employee) ? [$employee->sessioncategory_id=>$employee->sessioncategory->name] : [], null, ['class' => 'form-control']) !!}
+
+</div>
+
+<div class="form-group">
+    {!! Form::label('otcategory_id', "select a Over time category") !!}
+  
+ 
+   {!! Form::select('otcategory_id', isset($employee) ? [$employee->otcategory_id=>$employee->otcategory->name] : [], null, ['class' => 'form-control']) !!}
+</div>
+
+{!! Form::submit('Save', ['class' => 'btn btn-info']) !!}

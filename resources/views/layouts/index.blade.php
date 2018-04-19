@@ -1,5 +1,18 @@
 @extends('layouts.master')
 
+@section('title')
+    {{str_plural($modelName)}}-index
+@endsection
+
+@section('pageHeader')
+    <i class="fa fa-list-alt" aria-hidden="true"></i>
+{{str_plural($modelName)}}
+@endsection
+
+@section('optionalDescription')
+    summery of {{str_plural($modelName)}}
+@endsection
+
 
 @section('content')
 
@@ -29,6 +42,8 @@
 @section('script')
 
 <script>
+  @parent
+  
   $(function () {
     var oTable = $('#table-index').DataTable({
         "scrollX": true,

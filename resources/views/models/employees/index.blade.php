@@ -1,24 +1,5 @@
 @extends('layouts.index')
 
-@section('title')
-    Employees -index
-@endsection
-
-@section('pageHeader')
-    Employees
-@endsection
-
-@section('optionalDescription')
-    summery of employees
-@endsection
-
-@section('options-bar')
-  {{-- <a href="#" class="btn btn-warning btn-sm ">ddd</a> --}}
-  <a href="{{route('employees.create')}}" class="btn btn-primary btn-sm ">NEW EMPLOYEE</a>
- 
-@endsection
-
-
    @section('filters')   
       <div class="row">
 

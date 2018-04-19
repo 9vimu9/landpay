@@ -1,30 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers\Otcategory;
 
-use App\User;
-use JavaScript;
-use App\Employee;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEmployeeRequest;
 
-class EmployeeController extends Controller
+class OtcategoryController extends Controller
 {
+
+    protected $modelName="OT Category";
+    protected $createRoute='otcategories.create';
+    protected $indexRoute='otcategories.index';
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    protected $modelName="Employee";
-    protected $createRoute='employees.create';
-    protected $indexRoute='employees.index';
-
-    public function index(Request $request)
+    public function index()
     {
-        if (count($request->all())) {
+         if (count($request->all())) {
              // return $request->name;
 
             $employees = (new Employee)->newQuery();
@@ -118,7 +112,6 @@ class EmployeeController extends Controller
             ->with('columns',$datableColumns)
             ->with('createRoute',$this->createRoute)
             ->with('modelName',$this->modelName);
-
     }
 
     /**
@@ -128,9 +121,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
+         $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
        
-       return view('models.employees.create')
+       return view('models.otcategories.create')
             ->with('modelName',$this->modelName)
             ->with('indexRoute',$this->indexRoute)
            ->with('indexRoute',$this->indexRoute)
@@ -144,11 +137,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEmployeeRequest $request)
-    // public function store(Request $request)
+    public function store(Request $request)
     {
-        Employee::create($request->except(['isLabour']));
-        return redirect(route($createRoute));   
+        //
     }
 
     /**
@@ -159,7 +150,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -168,18 +159,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        
-        $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
-       
-       return view('models.employees.edit')
-           ->with('modelName',$this->modelName)
-           ->with('employee',$employee)
-           ->with('objectName',$employee->name)
-           ->with('createRoute',$this->createRoute)
-           ->with('indexRoute',$this->indexRoute)
-           ->with('formRequestPath',$formRequestPath);     
+        //
     }
 
     /**
@@ -189,14 +171,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreEmployeeRequest $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-
-        $employee->fill($request->all());
-        $employee->save();
-        flash('Message')->important();
-        return redirect(route($indexRoute));   
-
+        //
     }
 
     /**

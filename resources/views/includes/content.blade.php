@@ -11,6 +11,16 @@
 
         <div class="btn-group">
           @yield('options-bar')
+          
+          @isset($createRoute)
+            <a href="{{route($createRoute)}}" class="btn btn-primary btn-sm ">new {{$modelName}}</a>
+          @endisset
+
+          @isset($indexRoute)
+            <a href="{{route($indexRoute)}}" class="btn btn-warning btn-sm ">all {{str_plural($modelName)}}</a>
+          @endisset
+
+        
         </div>
       
       </ol>
@@ -18,7 +28,8 @@
 {{-- <br> --}}
     <!-- Main content -->
     <section class="content container-fluid">
-  
+      <!-- laracast flash message -->
+            @include('flash::message')
     @component('components.box', ['type' => 'box-solid'])
 
         @yield('content')

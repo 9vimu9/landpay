@@ -27,5 +27,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('employees','Employee\EmployeeController');    
+Route::resource('employees','Employee\EmployeeController');  
+
+Route::resource('otcategories','Otcategory\OtcategoryController');    
+
+
+Route::get('/', 'HomeController@index')->name('home');
+
 

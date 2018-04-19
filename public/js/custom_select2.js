@@ -3,6 +3,10 @@
 
 select2Client("#employee_id",{'column':'name','table':'employees'},'singleColumn');
 select2Client("#designation_id",{'column':'name','table':'designations'},'singleColumn');
+select2Client("#otcategory_id",{'column':'name','table':'otcategories'},'singleColumn');
+select2Client("#sessioncategory_id",{'column':'name','table':'sessioncategories'},'singleColumn');
+
+
 
 
 

@@ -30,6 +30,10 @@
 
 <!-- jQuery 3 -->
 <script src="{{asset('AdminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+{{-- <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script> --}}
 
 {{-- select2 --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -53,9 +57,14 @@
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
+{{-- bootstrap toggle --}}
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 @yield('laravel-jsvalidation')
 
+
 <script >
+//following code snippts will assign values for js global variables
   var select2Route="{{route('ajax.select2')}}";
 </script>
 
@@ -65,8 +74,21 @@
 
 <script src="{{asset('js/custom_select2.js')}}"></script>
 
+<script src="{{asset('js/custom_toggle.js')}}"></script>
+
+
 
 @yield('script')
+
+<script >
+ 
+
+  $(document).ready(function(){
+  $('#flash-overlay-modal').modal();
+  $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+});
+
+</script>
 
 </body>
 </html>
