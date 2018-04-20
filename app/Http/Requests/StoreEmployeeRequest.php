@@ -25,7 +25,7 @@ class StoreEmployeeRequest extends FormRequest
     public function rules()
     {
          $employee =  $this->route('employee');
-         $employeeId=is_null($this->route('employee')) ? '': $this->route('employee')->getKey();
+         $employeeId=is_null($employee) ? '': $employee->getKey();
 
 
         return [

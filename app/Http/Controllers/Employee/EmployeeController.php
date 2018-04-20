@@ -195,7 +195,7 @@ class EmployeeController extends Controller
         $employee->fill($request->all());
         $employee->save();
         flash('Message')->important();
-        return redirect(route($indexRoute));   
+        return redirect(route($this->indexRoute));   
 
     }
 

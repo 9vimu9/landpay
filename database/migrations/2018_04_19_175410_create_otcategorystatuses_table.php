@@ -18,37 +18,34 @@ class CreateOtcategorystatusesTable extends Migration
             $table->increments('id');
             $table->integer('otcategory_id')->unsigned();
             
-            $table->boolean('allow_clockin_ot')->nullable();
-            $table->boolean('allow_clockout_ot')->nullable();
+            $table->string('allow_clockin_ot')->nullable()->comment('if this allowed employees have OT before planned clockin');
+            $table->string('allow_clockout_ot')->nullable()->comment('if this allowd employyes have OT after planned clockout');
             
-            $table->integer('threshold')->nullable();
+            $table->integer('threshold')->nullable()->comment('minimum OT duration');
 
-           
             $table->integer('interval_deduction_clockin_ot')->nullable();
-            $table->time('interval_deduction_clockin')->nullable()->comment("employee's clock in time for interval deduction");
+            $table->string('interval_deduction_clockin_time')->nullable()->comment("if employee's actual clock in time is 'before' this time, specified interval time will deduct from OT hours ");
 
             $table->integer('interval_deduction_clockout_ot')->nullable();
-            $table->time('interval_deduction_clockout')->nullable();
+            $table->string('interval_deduction_clockout_time')->nullable()->comment("if employee's actual clock out time is 'after' this time, specified interval time will deduct from OT hours ");
 
-            $table->boolean('allow_fix_rate')->nullable();
-            $table->double('ot_fix_rate',10,2);
-            $table->double('double_ot_fix_rate',10,2);
+            $table->string('allow_fix_rate')->nullable();
+            $table->double('ot_fix_rate',10,2)->nullable()->comment('fixed value of ot hour');
+            $table->double('double_ot_fix_rate',10,2)->nullable()->comment('fixed value of double ot hour');;
 
-            $table->time('week_day_double_ot_start_time')->nullable();
+            $table->string('week_day_double_ot_start_time')->nullable()->comment('time that start double ot at week days');
 
-            $table->boolean('allow_double_ot_saturday')->nullable();
-            $table->boolean('allow_double_ot_sunday')->nullable();
-            $table->boolean('allow_double_ot_holiday')->nullable();
+            $table->string('allow_double_ot_saturday')->nullable();
+            $table->string('allow_double_ot_sunday')->nullable();
+            $table->string('allow_double_ot_holiday')->nullable();
 
-            $table->boolean('allow_ot_weekday')->nullable();
-            $table->boolean('allow_ot_saturday')->nullable();
-            $table->boolean('allow_ot_sunday')->nullable();
-            $table->boolean('allow_ot_holiday')->nullable();
-
-
+            $table->string('allow_ot_weekday')->nullable();
+            $table->string('allow_ot_saturday')->nullable();
+            $table->string('allow_ot_sunday')->nullable();
+            $table->string('allow_ot_holiday')->nullable();
 
             $table->timestamps();
-
+            
             $table->foreign('otcategory_id')->references('id')->on('otcategories')->onDelete('cascade');
 
         });

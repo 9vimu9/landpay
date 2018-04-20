@@ -42,7 +42,7 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <!-- Bootstrap 3.3.7 -->
-<script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/laravel-jsvalidation.min.js')}}"></script>
+<script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
@@ -60,6 +60,10 @@
 {{-- bootstrap toggle --}}
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+{{-- Wickedpicker --}}
+<script type="text/javascript" src="{{asset('js/libraries/wickedpicker.js')}}"></script>
+
+
 @yield('laravel-jsvalidation')
 
 
@@ -70,11 +74,14 @@
 
 
 {{-- custome js files (created by me ha ha ha) --}}
-<script src="{{asset('js/custom_daterangepicker.js')}}"></script>
+<script src="{{asset('js/customizations/daterangepicker.js')}}"></script>
 
-<script src="{{asset('js/custom_select2.js')}}"></script>
+<script src="{{asset('js/customizations/select2.js')}}"></script>
 
-<script src="{{asset('js/custom_toggle.js')}}"></script>
+<script src="{{asset('js/customizations/toggle.js')}}"></script>
+
+<script src="{{asset('js/customizations/wickedpicker.js')}}"></script>
+
 
 
 

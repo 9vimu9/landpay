@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Otcategory;
 
+use App\Otcategory;
+use App\Otcategorystatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OtcategoryRequest;
 
 class OtcategoryController extends Controller
 {
@@ -121,7 +124,7 @@ class OtcategoryController extends Controller
      */
     public function create()
     {
-         $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
+         $formRequestPath='App\Http\Requests\OtcategoryRequest';
        
        return view('models.otcategories.create')
             ->with('modelName',$this->modelName)
@@ -137,9 +140,18 @@ class OtcategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OtcategoryRequest $request)
     {
-        //
+            // return $request->all();
+        
+        $otcategory=Otcategory::create($request->only(['name']));
+        $request->merge(['otcategory_id'=>$otcategory->id]);
+       
+
+        Otcategorystatus::create($request->except(['name']));
+
+
+        return redirect(route($this->createRoute));   
     }
 
     /**
@@ -159,9 +171,19 @@ class OtcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Otcategory $otcategory )
     {
-        //
+         $formRequestPath='App\Http\Requests\OtcategoryRequest';
+        $otcategorystatus= $otcategory->getLatestOtcategoryStatus();
+        // return ($otcategorystatus);
+       
+       return view('models.otcategories.edit')
+           ->with('modelName',$this->modelName)
+           ->with('otcategorystatus',$otcategorystatus)
+           ->with('objectName',$otcategory->name)
+           ->with('createRoute',$this->createRoute)
+           ->with('indexRoute',$this->indexRoute)
+           ->with('formRequestPath',$formRequestPath);     
     }
 
     /**

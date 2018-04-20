@@ -1,7 +1,7 @@
 @extends('layouts.edit')
 
 @section('options-bar')
-  <a href="#" class="btn btn-danger btn-sm "><strong>remove</strong></a>
+	@parent
 @endsection
 
 @section('formContent')

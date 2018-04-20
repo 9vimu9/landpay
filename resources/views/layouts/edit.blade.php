@@ -12,6 +12,10 @@
     edit {{$modelName}} : {{$objectName}}
 @endsection
 
+@section('options-bar')
+  <a href="#" class="btn btn-danger btn-sm "><strong>remove</strong></a>
+@endsection
+
 
 @section('content')
 
