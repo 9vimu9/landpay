@@ -18,7 +18,10 @@ class Otcategory extends Model
 
     public function getLatestOtcategoryStatus()
     {
-    	return $this->hasMany(Otcategorystatus::class)->orderby('created_at', 'desc')->first();
+    	return $this->otcategorystatuses()->latest()->first();
+
+        // $parent->children()->latest()->first();
+
     }
 
 }

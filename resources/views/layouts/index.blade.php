@@ -54,7 +54,7 @@
           url: route,//laravel to js variable
           data: function (d) {
             jQuery.each( filters, function( index, value ) {
-              d[value] = $('input[name='+value+']').val();
+              d[value] = $('[name='+value+']').val();
 
             });
           }

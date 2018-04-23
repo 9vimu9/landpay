@@ -19,22 +19,25 @@
   <link rel="stylesheet" type="text/css" href="{{asset('AdminLTE/dist/css/skins/skin-blue.min.css')}}">
 
 {{-- daterangepicker --}}
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.16.4/daterangepicker.min.css" />
+<link rel="stylesheet" href="{{asset('css/libraries/daterangepicker.min.css')}}">
+
 
 {{-- select2 --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+<link rel="stylesheet" href="{{asset('css/libraries/select2.min.css')}}">
+
 
   <!-- Google Font -->
 <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 {{-- datatables --}}
- <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('css/libraries/jquery.dataTables.min.css')}}">
+
 
 {{-- bootstrap toggle --}}
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('css/libraries/bootstrap-toggle.min.css')}}">
 
-{{-- wickedpickler --}}
-<link rel="stylesheet" type="text/css" href="http://ericjgagnon.github.io/wickedpicker/wickedpicker/wickedpicker.min.css">
+{{-- bootstrap date time picker --}}
+<link rel="stylesheet" href="{{asset('css/libraries/bootstrap-datetimepicker.css')}}">
 
 </head>

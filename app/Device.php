@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Place;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Device extends Model
 {
-   use softDeletes;
+   use SoftDeletes;
 
    protected $dates=[
    	'deleted_at'
@@ -17,4 +18,9 @@ class Device extends Model
    	'name',
    	'place_id'
    ];
+
+    function place()
+    {
+        return $this->belongsTo(Place::class);
+    }
 }

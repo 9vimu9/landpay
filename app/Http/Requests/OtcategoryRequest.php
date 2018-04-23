@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 use App\Otcategorystatus;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class OtcategoryRequest extends FormRequest
+class OtcategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,11 +27,8 @@ class OtcategoryRequest extends FormRequest
         // return [];
 
 
-        $otcategory =  $this->route('otcategory');
-        $nameValidation=is_null($otcategory) ? 'required|max:255|unique:otcategories,name': 'required|max:255|unique:otcategories,name,'.$otcategory->getKey();
-
         return [
-            'name' => $nameValidation ,
+            'name' => $this->uniqueVsUpdateSolver($this,'otcategory','required|max:255|unique:places,name') ,
             'ot_fix_rate' => 'numeric|required_if:allow_fix_rate,==,on',
             'double_ot_fix_rate' => 'numeric|required_if:allow_fix_rate,==,on',
             'threshold'=>'required|numeric',

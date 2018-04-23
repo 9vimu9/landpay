@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Otcategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Otcategorystatus extends Model
@@ -48,5 +49,10 @@ class Otcategorystatus extends Model
 		'allow_ot_holiday'
 	];
     
+
+     public function otcategory()
+    {
+    	return $this->belongsTo(Otcategory::class);
+    }
      	
 }

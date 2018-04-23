@@ -1,4 +1,4 @@
-@if(!isset($otcategory))
+@if(!isset($otcategorystatus))
   <div class="form-group">
        {!! Form::label('name', "name of the category") !!}
        {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -13,24 +13,24 @@
         <div class="form-group">
     <h4>OT setup</h4>
     {!! Form::label('allow_ot_weekday', "allow OT at week days") !!}
-    {!! Form::checkbox('allow_ot_weekday', App\Otcategorystatus::ALLOW_OT_WEEKDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_ot_weekday', App\Otcategorystatus::ALLOW_OT_WEEKDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
  </div>
   <div class="form-group">
     {!! Form::label('allow_ot_saturday', "allow OT at saturdays") !!}
-    {!! Form::checkbox('allow_ot_saturday', App\Otcategorystatus::ALLOW_OT_SATURDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_ot_saturday', App\Otcategorystatus::ALLOW_OT_SATURDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
  </div>
 
  <div class="form-group">
     {!! Form::label('allow_ot_sunday', "allow OT at sundays") !!}
-    {!! Form::checkbox('allow_ot_sunday', App\Otcategorystatus::ALLOW_OT_SUNDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_ot_sunday', App\Otcategorystatus::ALLOW_OT_SUNDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
  </div>
 
   <div class="form-group">
     {!! Form::label('allow_ot_holiday', "allow OT at holidays") !!}
-    {!! Form::checkbox('allow_ot_holiday', App\Otcategorystatus::ALLOW_OT_HOLIDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_ot_holiday', App\Otcategorystatus::ALLOW_OT_HOLIDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
  </div>
        
@@ -44,19 +44,19 @@
       
       <div class="form-group">
         {!! Form::label('allow_double_ot_saturday', "allow Double OT at saturdays") !!}
-    {!! Form::checkbox('allow_double_ot_saturday', App\Otcategorystatus::ALLOW_DOUBLE_OT_SATURDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_double_ot_saturday', App\Otcategorystatus::ALLOW_DOUBLE_OT_SATURDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
      </div>
 
      <div class="form-group">
         {!! Form::label('allow_double_ot_sunday', "allow Double OT at sundays") !!}
-    {!! Form::checkbox('allow_double_ot_sunday', App\Otcategorystatus::ALLOW_DOUBLE_OT_SUNDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_double_ot_sunday', App\Otcategorystatus::ALLOW_DOUBLE_OT_SUNDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
      </div>
 
       <div class="form-group">
         {!! Form::label('allow_double_ot_holiday', "allow Double OT at holidays") !!}
-    {!! Form::checkbox('allow_double_ot_holiday', App\Otcategorystatus::ALLOW_DOUBLE_OT_HOLIDAY,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_double_ot_holiday', App\Otcategorystatus::ALLOW_DOUBLE_OT_HOLIDAY,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
      </div>
 
@@ -83,13 +83,13 @@
       <div class="col-md-6">
       
         {!! Form::label('allow_clockin_ot', "Over time before Planned clock in") !!}
-    {!! Form::checkbox('allow_clockin_ot', App\Otcategorystatus::ALLOW_CLOCKOUT_OT,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_clockin_ot', App\Otcategorystatus::ALLOW_CLOCKOUT_OT,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
       </div>
 
       <div class="col-md-6">
        {!! Form::label('allow_clockout_ot', "Over time after Planned clock out") !!}
-    {!! Form::checkbox('allow_clockout_ot', App\Otcategorystatus::ALLOW_CLOCKOUT_OT,false,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
+    {!! Form::checkbox('allow_clockout_ot', App\Otcategorystatus::ALLOW_CLOCKOUT_OT,null,['class' => 'form-control toggle','data-on'=>"allowed" , 'data-off'=>"nope"]) !!}
 
       </div>
 

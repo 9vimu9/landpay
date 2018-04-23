@@ -31,6 +31,11 @@ Route::resource('employees','Employee\EmployeeController');
 
 Route::resource('otcategories','Otcategory\OtcategoryController');    
 
+Route::resource('places','Place\PlaceController');    
+
+Route::resource('devices','Device\DeviceController');    
+
+
 
 Route::get('/', 'HomeController@index')->name('home');
 

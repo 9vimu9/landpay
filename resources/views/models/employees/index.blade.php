@@ -38,11 +38,11 @@
         <div class="form-group">
           <button  class="btn btn-primary" id="btn-filter" >Search</button>
 
-          <div class="form-group">
+         {{--  <div class="form-group">
                          <label for="users">Select user</label>
                          <select name="designation_id" id="designation_id" class="form-control">
             </select>
-          </div>
+          </div> --}}
         </div>
           <!-- /.form-group -->
         </div>

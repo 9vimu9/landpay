@@ -36,10 +36,12 @@
         crossorigin="anonymous"></script> --}}
 
 {{-- select2 --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="{{asset('js/libraries/select2.min.js')}}"></script>
+
 
 {{-- moment --}}
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="{{asset('js/libraries/moment.min.js')}}"></script>
+
 
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -48,20 +50,22 @@
 <script src="{{asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
 
 {{-- datatables --}}
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('js/libraries/jquery.dataTables.min.js')}}"></script>
+
 
 {{-- date range pocker --}}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.16.4/jquery.daterangepicker.min.js"></script>
+<script src="{{asset('js/libraries/jquery.daterangepicker.min.js')}}"></script>
 
 
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
 {{-- bootstrap toggle --}}
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="{{asset('js/libraries/bootstrap-toggle.min.js')}}"></script>
 
-{{-- Wickedpicker --}}
-<script type="text/javascript" src="{{asset('js/libraries/wickedpicker.js')}}"></script>
+
+{{-- bootstrap datetime picker --}}
+<script src="{{asset('js/libraries/bootstrap-datetimepicker.min.js')}}"></script>
 
 
 @yield('laravel-jsvalidation')
@@ -80,7 +84,7 @@
 
 <script src="{{asset('js/customizations/toggle.js')}}"></script>
 
-<script src="{{asset('js/customizations/wickedpicker.js')}}"></script>
+<script src="{{asset('js/customizations/bootstrap-datetimepicker.js')}}"></script>
 
 
 

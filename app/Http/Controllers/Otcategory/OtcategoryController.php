@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Otcategory;
 
+use JavaScript;
 use App\Otcategory;
 use App\Otcategorystatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 use App\Http\Requests\OtcategoryRequest;
 
 class OtcategoryController extends Controller
@@ -19,99 +21,77 @@ class OtcategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-         if (count($request->all())) {
-             // return $request->name;
-
-            $employees = (new Employee)->newQuery();
-
-            if ($request->has('name')) {
-                $employees->where('name', 'like', "%{$request->name}%");
-            }
-
-            if ($request->has('id')) {
-                $employees->where('id', 'like', "{$request->id}%");
-            }
-
-            if ($request->has('address')) {
-                $employees->where('address', 'like', "%{$request->address}%");
-            }
-
-            if ($request->has('telephone_no')) {
-                $employees->where('telephone_no_1', 'like', "{$request->telephone_no}%");
-            }
-
-            if ($request->has('nic')) {
-                $employees->where('nic', 'like', "{$request->nic}%");
-            }
+           if ($request->ajax()) {
+            $lastStatusOfOtcategories = Otcategorystatus::whereRaw('id IN (select MAX(id) FROM otcategorystatuses GROUP BY otcategory_id)')->get();
 
 
-            if ($request->has('dob')) {
-                $employees->where('dob', 'like', "{$request->dob}%");
-            }
-
-
-            if ($request->has('date_joined')) {
-                $employees->where('date_joined', 'like', "{$request->date_joined}%");
-            }
-
-            return Datatables::of($employees->get())
-            ->addColumn('action', function ($employee) {
-               return htmlCellBtnEdit(route('employees.edit',$employee->id),'xs');
+            return Datatables::of($lastStatusOfOtcategories)
+                ->editColumn('name', function ($lastStatusOfOtcategories) {
+                    return $lastStatusOfOtcategories->otcategory->name;
+                })
+                  ->addColumn('action', function ($lastStatusOfOtcategories) {
+               return htmlCellBtnEdit(route('otcategories.edit',$lastStatusOfOtcategories->otcategory->id),'xs');
             })
-            ->make(true);
+                ->make(true);
         }
 
-         // 
-     
-
-        $route=route('employees.index');//route for ajax request
-
-        $filters=[//input names of each filter
-            'name',
-            'id',
-            'address',
-            'telephone_no',
-            'nic',
-            'dob',
-            'date_joined'
-        ];
+        $route=route($this->indexRoute);//route for ajax request
 
         $datableColumns=[//column names of index-table
             'action',
-            'FP Id',
-            'Name',
-            'nic',
-            'address',
-            'address temporary',
-            'tele 1',
-            'tele 2',
-            'date joined',
-            'date of birth'
-          ];
+            'name',
+            'allow OT weekday',
+            'allow OT saturday',
+            'allow OT sunday',
+            'allow OT holiday',
+            'allow D OT saturday',
+            'allow D OT sunday',
+            'allow D OT holiday',          
+            'allow OT before clock in',
+            'allow OT after clock in',
+            'duration of minimum OT (m)',
+            'interval morning OT',
+            'time of interval',
+            'interval night OT',
+            'time of interval',
+            'rates fixed ?',
+            'OT fix rate',
+            'D OT fix rate'
+
+        ];
+
  
-          $columnMapper=[//i dont know why they use this any way I created this abnormal arry
+          $columnMapper=[//'data'=>column name for indicate relationshoip name=>name of column with owner of table 
             ['data'=>'action','name'=>'action','orderable'=>false,'searchable'=>false],
-            ['data'=>'id','name'=>'id'],
             ['data'=>'name','name'=>'name'],
-            ['data'=>'nic','name'=>'nic'],
-            ['data'=>'address','name'=>'address'],
-            ['data'=>'address_temperary','name'=>'address_temperary'],
-            ['data'=>'telephone_no_1','name'=>'telephone_no_1'],
-            ['data'=>'telephone_no_2','name'=>'telephone_no_2'],
-            ['data'=>'date_joined','name'=>'date_joined'],
-            ['data'=>'dob','name'=>'dob'],
-
-
+            ['data'=>'allow_ot_weekday','name'=>'allow_ot_weekday'],
+            ['data'=>'allow_ot_saturday','name'=>'allow_ot_saturday'],
+            ['data'=>'allow_ot_sunday','name'=>'allow_ot_sunday'],
+            ['data'=>'allow_ot_holiday','name'=>'allow_ot_holiday'],
+            ['data'=>'allow_double_ot_saturday','name'=>'allow_double_ot_saturday'],
+            ['data'=>'allow_double_ot_sunday','name'=>'allow_double_ot_sunday'],
+            ['data'=>'allow_double_ot_holiday','name'=>'allow_double_ot_holiday'],
+            ['data'=>'allow_clockin_ot','name'=>'allow_clockin_ot'],
+            ['data'=>'allow_clockout_ot','name'=>'allow_clockout_ot'],
+            ['data'=>'threshold','name'=>'threshold'],
+            ['data'=>'interval_deduction_clockin_ot','name'=>'interval_deduction_clockin_ot'],
+            ['data'=>'interval_deduction_clockin_time','name'=>'interval_deduction_clockin_time'],
+            ['data'=>'interval_deduction_clockout_ot','name'=>'interval_deduction_clockout_ot'],
+            ['data'=>'interval_deduction_clockout_time','name'=>'interval_deduction_clockout_time'],
+            ['data'=>'allow_fix_rate','name'=>'allow_fix_rate'],
+            ['data'=>'ot_fix_rate','name'=>'ot_fix_rate'],
+            ['data'=>'double_ot_fix_rate','name'=>'double_ot_fix_rate'],
+ 
           ];
         JavaScript::put([//this will convert php vars to js vars in more secure way. thanks jeffory way
             'route'=>$route,
             'columns'=>$columnMapper,
-            'filters'=>$filters
+            'filters'=>['name']
         ]);
 
-        return view('models.employees.index')
+        return view('models.otcategories.index')
             ->with('columns',$datableColumns)
             ->with('createRoute',$this->createRoute)
             ->with('modelName',$this->modelName);
@@ -146,11 +126,7 @@ class OtcategoryController extends Controller
         
         $otcategory=Otcategory::create($request->only(['name']));
         $request->merge(['otcategory_id'=>$otcategory->id]);
-       
-
         Otcategorystatus::create($request->except(['name']));
-
-
         return redirect(route($this->createRoute));   
     }
 
@@ -174,7 +150,7 @@ class OtcategoryController extends Controller
     public function edit(Otcategory $otcategory )
     {
          $formRequestPath='App\Http\Requests\OtcategoryRequest';
-        $otcategorystatus= $otcategory->getLatestOtcategoryStatus();
+        $otcategorystatus= $otcategory->getLatestOtcategoryStatus();//get last otcategorystatus of seloectd otcategory
         // return ($otcategorystatus);
        
        return view('models.otcategories.edit')
@@ -193,9 +169,20 @@ class OtcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        $otcategorystatus=Otcategorystatus::findOrFail($id);
+
+        $otcategorystatus->fill($request->all());
+
+        if ($otcategorystatus->isDirty()) {
+            // return 'd';
+            $request->merge(['otcategory_id'=>$otcategorystatus->otcategory_id]);
+
+            Otcategorystatus::create($request->all());
+        }
+
+        return redirect(route($this->createRoute));   
     }
 
     /**

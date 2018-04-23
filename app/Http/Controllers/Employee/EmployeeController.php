@@ -21,6 +21,8 @@ class EmployeeController extends Controller
     protected $modelName="Employee";
     protected $createRoute='employees.create';
     protected $indexRoute='employees.index';
+    protected $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
+
 
     public function index(Request $request)
     {
@@ -66,10 +68,10 @@ class EmployeeController extends Controller
             ->make(true);
         }
 
-         // 
+         
      
 
-        $route=route('employees.index');//route for ajax request
+        $route=route($this->indexRoute);//route for ajax request
 
         $filters=[//input names of each filter
             'name',
@@ -128,14 +130,13 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
        
        return view('models.employees.create')
             ->with('modelName',$this->modelName)
             ->with('indexRoute',$this->indexRoute)
            ->with('indexRoute',$this->indexRoute)
 
-            ->with('formRequestPath',$formRequestPath);        
+            ->with('formRequestPath',$this->formRequestPath);        
     }
 
     /**
@@ -148,7 +149,7 @@ class EmployeeController extends Controller
     // public function store(Request $request)
     {
         Employee::create($request->except(['isLabour']));
-        return redirect(route($createRoute));   
+        return redirect(route($this->createRoute));   
     }
 
     /**
@@ -171,7 +172,6 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         
-        $formRequestPath='App\Http\Requests\StoreEmployeeRequest';
        
        return view('models.employees.edit')
            ->with('modelName',$this->modelName)
@@ -179,7 +179,7 @@ class EmployeeController extends Controller
            ->with('objectName',$employee->name)
            ->with('createRoute',$this->createRoute)
            ->with('indexRoute',$this->indexRoute)
-           ->with('formRequestPath',$formRequestPath);     
+           ->with('formRequestPath',$this->formRequestPath);     
     }
 
     /**
